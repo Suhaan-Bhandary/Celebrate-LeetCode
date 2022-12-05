@@ -1,13 +1,9 @@
 {
   "name": "Celebrate LeetCode",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "browser_action": {
+  "version": "1.0.1",
+  "manifest_version": 3,
+  "action": {
     "default_popup": "./src/popup.html"
-  },
-  "background": {
-    "page": "./src/background.html",
-    "persistent": false
   },
   "content_scripts": [
     {
@@ -16,6 +12,11 @@
       "run_at": "document_idle"
     }
   ],
-  "web_accessible_resources": ["*.mp3"],
+  "web_accessible_resources": [
+    {
+      "resources": ["*.mp3"],
+      "matches": ["https://leetcode.com/*"]
+    }
+  ],
   "permissions": ["activeTab", "storage"]
 }

@@ -1,9 +1,18 @@
-const handleProblemSubmission = async () => {
+const playSong = () => {
+  let url = chrome.runtime.getURL('src/assets/music/rock-the-party.mp3');
+  let audio = new Audio(url);
+  audio.play();
+
+  setTimeout(() => audio.pause(), 20 * 1000);
+};
+
+const handleProblemSubmission = async (count) => {
   console.log('Waiting for 5s');
+
   const data = await new Promise((resolve) => {
     setTimeout(() => {
       resolve({ done: true });
-    }, 10 * 1000);
+    }, 1000);
   });
 
   console.log('Handle Problem Submission');
@@ -22,25 +31,40 @@ const handleProblemSubmission = async () => {
   if (isAccepted) {
     chrome.runtime.sendMessage({ request: 'song' });
     console.log('Accepted');
+    playSong();
   } else {
     console.log('Rejected');
+
+    // We are checking 20 times
+    if (count < 15) {
+      handleProblemSubmission(count + 1);
+    }
   }
 };
 
 const initialize = () => {
-  console.log('We are on LeetCode!!');
+  // We have to loop till we get the button
+  let initializeInterval = setInterval(() => {
+    try {
+      console.log('We are on LeetCode!!');
+      const buttons = document.querySelectorAll('button');
 
-  const buttons = document.querySelectorAll('button');
+      let submitButton = null;
+      for (let i = 0; i < buttons.length; i++) {
+        const button = buttons[i];
+        if (button.textContent === 'Submit') {
+          submitButton = button;
+        }
+      }
 
-  let submitButton = null;
-  for (let i = 0; i < buttons.length; i++) {
-    const button = buttons[i];
-    if (button.textContent === 'Submit') {
-      submitButton = button;
+      submitButton.addEventListener('click', () => handleProblemSubmission(0));
+
+      // Removing the interval
+      clearInterval(initializeInterval);
+    } catch (error) {
+      console.log(error);
     }
-  }
-
-  submitButton.addEventListener('click', handleProblemSubmission);
+  }, 1000);
 };
 
-setTimeout(initialize, 6 * 1000);
+window.addEventListener('load', initialize);
