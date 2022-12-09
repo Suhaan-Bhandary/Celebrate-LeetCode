@@ -6,63 +6,56 @@ const playSong = () => {
   setTimeout(() => audio.pause(), 20 * 1000);
 };
 
-const handleProblemSubmission = async (count) => {
-  console.log('Waiting for 5s');
+const handleProblemSubmission = async () => {
+  let maxTriesTillAccepted = 15;
+  let timeBetweenTriesMilliseconds = 1000;
 
-  const data = await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ done: true });
-    }, 1000);
-  });
+  for (let i = 0; i < maxTriesTillAccepted; i++) {
+    // Waiting for timeBetweenTriesMilliseconds
+    await new Promise((resolve) =>
+      setTimeout(() => resolve(), timeBetweenTriesMilliseconds)
+    );
 
-  console.log('Handle Problem Submission');
-  console.log(data);
+    // Try getting the accepted span
+    const spans = document.querySelectorAll('svg ~ span');
 
-  // Find the accepted logo and if found play music
-  const spans = document.querySelectorAll('svg ~ span');
-
-  let isAccepted = false;
-  for (let i = 0; i < spans.length; i++) {
-    if (spans[i].textContent === 'Accepted') {
-      isAccepted = true;
+    // Check if the span contains the 'Accepted' textContent
+    let isAccepted = false;
+    for (let i = 0; i < spans.length; i++) {
+      if (spans[i].textContent === 'Accepted') {
+        isAccepted = true;
+        break;
+      }
     }
-  }
 
-  if (isAccepted) {
-    chrome.runtime.sendMessage({ request: 'song' });
-    console.log('Accepted');
-    playSong();
-  } else {
-    console.log('Rejected');
-
-    // We are checking 20 times
-    if (count < 15) {
-      handleProblemSubmission(count + 1);
+    // If Accepted play the song and break the loop
+    if (isAccepted) {
+      playSong();
+      break;
     }
   }
 };
 
 const initialize = () => {
-  // We have to loop till we get the button
+  // Trying till the submit button is found
   let initializeInterval = setInterval(() => {
-    try {
-      console.log('We are on LeetCode!!');
-      const buttons = document.querySelectorAll('button');
+    // Getting all the button and finding the submit button
+    const buttons = document.querySelectorAll('button');
 
-      let submitButton = null;
-      for (let i = 0; i < buttons.length; i++) {
-        const button = buttons[i];
-        if (button.textContent === 'Submit') {
-          submitButton = button;
-        }
+    // Find the submit button from the buttons
+    let submitButton = null;
+    for (let i = 0; i < buttons.length; i++) {
+      let button = buttons[i];
+      if (button.textContent === 'Submit') {
+        submitButton = button;
+        break;
       }
+    }
 
-      submitButton.addEventListener('click', () => handleProblemSubmission(0));
-
-      // Removing the interval
+    // Add a event listener to the button and remove the interval if button is found
+    if (submitButton) {
+      submitButton.addEventListener('click', handleProblemSubmission);
       clearInterval(initializeInterval);
-    } catch (error) {
-      console.log(error);
     }
   }, 1000);
 };
