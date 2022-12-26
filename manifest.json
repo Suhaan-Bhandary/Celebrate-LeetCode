@@ -8,7 +8,7 @@
   "content_scripts": [
     {
       "matches": ["https://leetcode.com/*"],
-      "js": ["./src/scripts/LeetCode.js"],
+      "js": ["./src/content-scripts/LeetCode.js"],
       "run_at": "document_idle"
     }
   ],
