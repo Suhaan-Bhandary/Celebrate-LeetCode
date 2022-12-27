@@ -1,3 +1,5 @@
+'use strict';
+
 // Loading the audio when the user goes to the Leetcode page
 let url = chrome.runtime.getURL('src/assets/music/rock-the-party.mp3');
 let audio = new Audio(url);
