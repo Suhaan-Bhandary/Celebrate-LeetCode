@@ -1,7 +1,10 @@
 {
   "name": "Celebrate LeetCode",
-  "version": "1.0.1",
+  "description": "A cool extension for celebrating LeetCode submissions and searching friends in contests easily!!",
+  "version": "1.1.0",
+  "author": "Suhaan Bhandary",
   "manifest_version": 3,
+  "homepage_url": "https://github.com/Suhaan-Bhandary/Celebrate-LeetCode",
   "icons": {
     "16": "./src/assets/icons/Icon16.png",
     "32": "./src/assets/icons/Icon32.png",
@@ -29,5 +32,5 @@
       "matches": ["https://leetcode.com/*"]
     }
   ],
-  "permissions": ["activeTab", "storage"]
+  "permissions": ["storage"]
 }
