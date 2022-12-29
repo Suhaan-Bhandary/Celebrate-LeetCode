@@ -1,0 +1,163 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 500px;
+  max-width: 600px;
+  margin-inline: auto;
+
+  padding: 1rem;
+  text-align: center;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+body > * + * {
+  margin-top: 0.5rem;
+}
+
+h1 {
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.formContainer {
+  text-align: left;
+}
+
+.input-field {
+  margin: 4px 0;
+  margin-bottom: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.required {
+  color: red;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.input-field label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #2e2e2e;
+}
+
+.pair-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-field input,
+select {
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  padding: 0.5rem;
+}
+
+.input-field input :focus,
+.input-field select:focus {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+}
+
+.input-field select {
+  color: black;
+  background: white;
+}
+
+#formError{
+  color: red;
+}
+
+#searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#searchButton:hover,
+#searchButton:focus {
+  transform: scale(1.03);
+}
+
+#statsContainer {
+  font-weight: 600;
+  margin-block: 0.75rem;
+}
+
+#resultTable {
+  color: #262626;
+  min-width: 100%;
+  font-size: 0.7rem;
+  text-align: left;
+  margin-bottom: 2rem;
+
+  border-radius: 5px 5px 0 0;
+}
+
+#resultTable:has(p){
+  margin-bottom: 0.75rem;
+}
+
+#resultTable thead tr {
+  background-color: #50d57fa6;
+  font-weight: bold;
+  border-bottom: 1px solid #dddddd;
+}
+
+#resultTable th,
+#resultTable td {
+  padding: 0.6rem 1rem;
+}
+
+#resultTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+#resultTable tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#resultTable tbody tr:last-of-type {
+  border-bottom: 2px solid #50d57f;
+}
+
+.userBtn,
+.visitBtn {
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+}

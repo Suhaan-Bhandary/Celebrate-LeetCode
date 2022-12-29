@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celebrate LeetCode</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="./popup.css" />
+
+    <script src="./storage.js" defer></script>
+    <script src="./ui.js" defer></script>
+    <script src="./searchUserData.js" defer></script>
+    <script src="./popup.js" defer></script>
+  </head>
+  <body>
+    <h1>Celebrate LeetCode</h1>
+
+    <!-- Search you friend -->
+    <div class="formContainer">
+      <div class="input-field">
+        <label>Contest <span class="required">*</span></label>
+        <div class="pair-input">
+          <select id="contestType">
+            <option value="weekly-contest">Weekly</option>
+            <option value="biweekly-contest">BiWeekly</option>
+          </select>
+          <input
+            type="text"
+            id="contestNumber"
+            placeholder="324 or 94..."
+            autofocus
+          />
+        </div>
+      </div>
+      <div class="input-field">
+        <label for="name">User Substring <span class="required">*</span></label>
+        <input
+          name="name"
+          type="text"
+          id="userName"
+          required
+          placeholder="User to Search"
+        />
+      </div>
+      <div class="input-field">
+        <label for="limit">Result Limit</label>
+        <input name="limit" type="number" id="resultLimit" value="1" />
+      </div>
+
+      <div class="input-field">
+        <label>Start Rank</label>
+        <input
+          type="number"
+          id="startRank"
+          value="0"
+          placeholder="Start Search from..."
+        />
+      </div>
+      <p id="formError"></p>
+      <button id="searchButton">Search</button>
+    </div>
+
+    <div id="statsContainer"></div>
+    <table id="resultTable"></table>
+
+    <div>
+      <p>Created with ❤️ by <span class="bold">Suhaan Bhandary</span></p>
+      <div>
+        Music by
+        <a
+          href="https://pixabay.com/users/alexiaction-26977400/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=110947"
+          >AlexiAction</a
+        >
+        from
+        <a
+          href="https://pixabay.com/music//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=110947"
+          >Pixabay</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

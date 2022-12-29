@@ -3,12 +3,17 @@
   "version": "1.0.1",
   "manifest_version": 3,
   "action": {
-    "default_popup": "./src/popup.html"
+    "default_popup": "./src/popup/popup.html"
   },
   "content_scripts": [
     {
       "matches": ["https://leetcode.com/*"],
       "js": ["./src/content-scripts/LeetCode.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://leetcode.com/contest/*"],
+      "js": ["./src/content-scripts/LeetCodeLeaderBoardHighlight.js"],
       "run_at": "document_idle"
     }
   ],
