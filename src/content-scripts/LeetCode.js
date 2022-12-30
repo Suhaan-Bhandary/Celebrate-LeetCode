@@ -5,6 +5,7 @@ let url = chrome.runtime.getURL('src/assets/music/rock-the-party.mp3');
 let audio = new Audio(url);
 
 const playSong = () => {
+  audio.currentTime = 0;
   audio.play();
   setTimeout(() => audio.pause(), 20 * 1000);
 };
